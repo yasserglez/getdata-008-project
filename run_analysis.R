@@ -22,7 +22,7 @@ retrieve_raw_data <- function(raw_data_dir, force = FALSE) {
 }
 
 tidy_raw_data <- function(raw_data_dir) {
-    # 1. Merges the training and the test sets to create one data set
+    # 1. Merge the training and the test sets to create one data set
 
     # Load the data from the train and test partitions into the same data.frame
     data <- NULL
@@ -37,15 +37,20 @@ tidy_raw_data <- function(raw_data_dir) {
     # Load the feature names and attach the column names to the data.frame
     features <- read.table(file.path(raw_data_dir, "features.txt"),
                            stringsAsFactors = FALSE)[, 2]
-    colnames(data) <- c("subject_id", "activity_id", features)
+    colnames(data) <- c("subject_id", "activity", features)
 
-    # 2. Extracts only the measurements on the mean and standard deviation
+    # 2. Extract only the measurements on the mean and standard deviation
     #    for each measurement
 
+    # Tried using dplyr's select+contains but there are duplicated column names
     selected_features <- sort(features[grep("(mean|std)\\(\\)", features)])
-    data <- data[ , c("subject_id", "activity_id", selected_features)]
+    data <- data[ , c("subject_id", "activity", selected_features)]
 
-    # 3. Uses descriptive activity names to name the activities in the data set
+    # 3. Use descriptive activity names to name the activities in the data set
+
+    activity_labels <- read.table(file.path(raw_data_dir, "activity_labels.txt"),
+                                  stringsAsFactors = FALSE)[, 2]
+    data <- mutate(data, activity = activity_labels[activity])
 
     # 4. Appropriately labels the data set with descriptive variable names
 }
