@@ -17,12 +17,31 @@ retrieve_raw_data <- function(raw_data_dir, force = FALSE) {
             file.rename(orig_raw_data_dir, raw_data_dir)
         }
     }
-    return(download_date)
+    download_date
+}
+
+tidy_raw_data <- function(raw_data_dir) {
+    # 1. Merges the training and the test sets to create one data set
+
+    # 2. Extracts only the measurements on the mean and standard deviation
+    #    for each measurement
+
+    # 3. Uses descriptive activity names to name the activities in the data set
+
+    # 4. Appropriately labels the data set with descriptive variable names
+}
+
+summarize_tidy_data <- function(tidy_data) {
+    # 5. From the data set in step 4, creates a second, independent tidy
+    #    data set with the average of each variable for each activity
+    #    and each subject
 }
 
 
 # Call the functions in order:
 
 raw_data_dir <- "UCI HAR Dataset"
-
 retrieve_raw_data(raw_data_dir)
+tidy_data <- tidy_raw_data(raw_data_dir)
+summarized_tidy_data <- summarize_tidy_data(tidy_data)
+write.table(summarized_tidy_data, "summarized_tidy_data.txt", row.name = FALSE)
