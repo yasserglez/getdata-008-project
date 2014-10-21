@@ -29,17 +29,21 @@ tidy_raw_data <- function(raw_data_dir) {
     for (set in c("train", "test")) {
         set_dir <- file.path(raw_data_dir, set)
         subject <- read.table(file.path(set_dir, paste0("subject_", set, ".txt")))
-        X <- read.table(file.path(set_dir, paste0("X_", set, ".txt")))
         y <- read.table(file.path(set_dir, paste0("y_", set, ".txt")))
-        set_data <- cbind(subject, X, y)
+        X <- read.table(file.path(set_dir, paste0("X_", set, ".txt")))
+        set_data <- cbind(subject, y, X)
         data <- rbind(data, set_data)
     }
     # Load the feature names and attach the column names to the data.frame
-    features <- read.table(file.path(raw_data_dir, "features.txt"))[, 2]
-    colnames(data) <- c("subject", features, "activity")
+    features <- read.table(file.path(raw_data_dir, "features.txt"),
+                           stringsAsFactors = FALSE)[, 2]
+    colnames(data) <- c("subject_id", "activity_id", features)
 
     # 2. Extracts only the measurements on the mean and standard deviation
     #    for each measurement
+
+    selected_features <- sort(features[grep("(mean|std)\\(\\)", features)])
+    data <- data[ , c("subject_id", "activity_id", selected_features)]
 
     # 3. Uses descriptive activity names to name the activities in the data set
 
