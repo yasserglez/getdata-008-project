@@ -1,3 +1,4 @@
+library("dplyr")
 
 # Functions performing each part of the analysis:
 
@@ -22,6 +23,20 @@ retrieve_raw_data <- function(raw_data_dir, force = FALSE) {
 
 tidy_raw_data <- function(raw_data_dir) {
     # 1. Merges the training and the test sets to create one data set
+
+    # Load the data from the train and test partitions into the same data.frame
+    data <- NULL
+    for (set in c("train", "test")) {
+        set_dir <- file.path(raw_data_dir, set)
+        subject <- read.table(file.path(set_dir, paste0("subject_", set, ".txt")))
+        X <- read.table(file.path(set_dir, paste0("X_", set, ".txt")))
+        y <- read.table(file.path(set_dir, paste0("y_", set, ".txt")))
+        set_data <- cbind(subject, X, y)
+        data <- rbind(data, set_data)
+    }
+    # Load the feature names and attach the column names to the data.frame
+    features <- read.table(file.path(raw_data_dir, "features.txt"))[, 2]
+    colnames(data) <- c("subject", features, "activity")
 
     # 2. Extracts only the measurements on the mean and standard deviation
     #    for each measurement
