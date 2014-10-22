@@ -8,10 +8,10 @@ Usage
 -----
 
 The script `run_analysis.R` prepares the tidy data for later analysis. 
-In order to run it you must have installed recent versions of the 
+In order to run it you must have installed recent versions of the packages
 [magrittr](http://cran.r-project.org/package=magrittr) (at least 1.0.1), 
 [dplyr](http://cran.r-project.org/package=dplyr) (at least 0.3.0.2), and 
-[stringr](http://cran.r-project.org/package=stringr) (at least 0.6.2) packages. 
+[stringr](http://cran.r-project.org/package=stringr) (at least 0.6.2).
 The script is divided into three functions that together carry out the steps 
 of the analysis:
 
@@ -30,7 +30,8 @@ Its input is the `data.frame` returned by `tidy_raw_data`, and it creates
 the second tidy data set with the average of each variable for each activity
 and each subject. This data set can be written to disk using `write.table`.
 
-The three functions are called together as follows:
+The three functions are called together at the end of `run_analysis.R`
+as follows:
 
 ```R
 raw_data_dir <- "UCI HAR Dataset"
