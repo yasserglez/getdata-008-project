@@ -59,7 +59,7 @@ tidy_raw_data <- function(raw_data_dir) {
     colnames(data) <- colnames(data) %>%
         str_replace("(mean|std)\\(\\)", "\\1") %>%
         str_replace("^t", "time") %>%
-        str_replace("^f", "freq") %>%
+        str_replace("^f", "frequency") %>%
         str_replace("Body(Body)?", "_body") %>%
         str_replace("Mag", "_magnitude") %>%
         str_replace("Jerk", "_jerk") %>%
