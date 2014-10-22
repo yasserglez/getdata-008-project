@@ -32,7 +32,7 @@ summarized_tidy_data <- summarize_tidy_data(tidy_data)
 write.table(summarized_tidy_data, "summarized_tidy_data.txt", row.names = FALSE)
 ```
 
-For information about the data, please see the code book.
+For information about the data, please see [the code book](CodeBook.md).
 
 
 Author
