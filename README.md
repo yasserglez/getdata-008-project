@@ -1,23 +1,23 @@
 Getting and Cleaning Data
 =========================
 
-Work for the course [Getting and Cleaning Data](https://www.coursera.org/course/getdata), 
+Work for the course [Getting and Cleaning Data](https://www.coursera.org/course/getdata),
 part of the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1).
 
 Usage
 -----
 
-The script `run_analysis.R` prepares the tidy data for later analysis. 
+The script `run_analysis.R` prepares the tidy data for later analysis.
 In order to run it you must have installed recent versions of the packages
-[magrittr](http://cran.r-project.org/package=magrittr) (at least 1.0.1), 
-[dplyr](http://cran.r-project.org/package=dplyr) (at least 0.3.0.2), and 
+[magrittr](http://cran.r-project.org/package=magrittr) (at least 1.0.1),
+[dplyr](http://cran.r-project.org/package=dplyr) (at least 0.3.0.2), and
 [stringr](http://cran.r-project.org/package=stringr) (at least 0.6.2).
-The script is divided into three functions that together carry out the steps 
+The script is divided into three functions that together carry out the steps
 of the analysis:
 
-* `retrieve_raw_data` - This function downloads and extracts the zip file 
+* `retrieve_raw_data` - This function downloads and extracts the zip file
 containing the raw data. The parameter `raw_data_dir` defines the directory
-where the data will be extracted. Unless `force` is set to `TRUE`, the 
+where the data will be extracted. Unless `force` is set to `TRUE`, the
 data will not be downloaded/unzipped again if it already exists on disk.
 The function returns the time and date when the raw data was downloaded.
 
@@ -41,13 +41,12 @@ summarized_tidy_data <- summarize_tidy_data(tidy_data)
 write.table(summarized_tidy_data, "summarized_tidy_data.txt", row.names = FALSE)
 ```
 
-For information about the generated tidy data set, please see the file 
+For information about the generated tidy data set, please see the file
 [CodeBook.md](CodeBook.md).
-
 
 Author
 ------
 
-Yasser Gonzalez Fernandez
-* Email - contact@yglezfdez.com
-* Homepage - http://yglezfdez.com
+Yasser Gonzalez
+* Homepage - http://yassergonzalez.com
+* Email - contact@yassergonzalez.com
